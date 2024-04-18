@@ -9,11 +9,11 @@ app.use(express.json());
 
 var mysql = require('mysql2');
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Password@1',
-  database:'vms_sample',
-  port: 3306,  
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database:config.database,
+  port: config.port,  
 });
 connection.connect(function(err) {
   if (err) throw err;
