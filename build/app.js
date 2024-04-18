@@ -15,7 +15,7 @@
   \****************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const express = __webpack_require__(/*! express */ \"express\");\r\nconst config = __webpack_require__(/*! ./config */ \"./config.js\");\r\n\r\nconst app = express();\r\nconst PORT = config.SERVER_PORT;\r\napp.use(express.urlencoded({ extended: true }));\r\napp.use(express.json());\r\n\r\napp.get(\"/\", (req, res) => {\r\n    res.send(\"Sample Node Application\");\r\n  });\r\n\r\n\r\n\r\n\r\n\r\napp.listen(PORT, () => {\r\n    console.log(`Server is running on port ${PORT}`);\r\n  });\n\n//# sourceURL=webpack://sbnew/./app.js?");
+eval("const express = __webpack_require__(/*! express */ \"express\");\r\nconst config = __webpack_require__(/*! ./config */ \"./config.js\");\r\n(__webpack_require__(/*! dotenv */ \"dotenv\").config)();\r\nconst app = express();\r\nconst PORT = config.SERVER_PORT;\r\napp.use(express.urlencoded({ extended: true }));\r\napp.use(express.json());\r\n\r\n\r\nvar mysql = __webpack_require__(/*! mysql2 */ \"mysql2\");\r\nvar connection = mysql.createConnection({\r\n  host: 'localhost',\r\n  user: 'root',\r\n  password: 'Password@1',\r\n  database:'vms_sample',\r\n  port: 3306,  \r\n});\r\nconnection.connect(function(err) {\r\n  if (err) throw err;\r\n  console.log(\"Connected!\");\r\n});\r\napp.get(\"/\", (req, res) => {\r\n    res.send(\"Sample Node Application\");\r\n  });\r\napp.get(\"/users\", (req, res) => {\r\n    connection.query('SELECT * FROM department', function(err, results) {\r\n      if (err) throw err;\r\n      res.send(results);\r\n    });\r\n  });\r\n\r\n\r\nconsole.log(\"Server is running on port \" + PORT);\r\n\r\napp.listen(PORT, () => {\r\n    console.log(`Server is running on port ${PORT}`);\r\n  });\n\n//# sourceURL=webpack://sbnew/./app.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const express = __webpack_require__(/*! express */ \"express\");\r\nconst 
   \*******************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("(__webpack_require__(/*! dotenv */ \"dotenv\").config)();\r\n\r\nmodule.exports = {\r\n  SERVER_PORT: process.env.SERVER_PORT,\r\n};\n\n//# sourceURL=webpack://sbnew/./config.js?");
+eval("(__webpack_require__(/*! dotenv */ \"dotenv\").config)();\r\n\r\nmodule.exports = {\r\n  SERVER_PORT: '3006',\r\n};\n\n//# sourceURL=webpack://sbnew/./config.js?");
 
 /***/ }),
 
@@ -48,6 +48,17 @@ module.exports = require("dotenv");
 
 "use strict";
 module.exports = require("express");
+
+/***/ }),
+
+/***/ "mysql2":
+/*!*************************!*\
+  !*** external "mysql2" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("mysql2");
 
 /***/ })
 
