@@ -15,7 +15,28 @@
   \****************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const express = __webpack_require__(/*! express */ \"express\");\r\n\r\nconst app = express();\r\nconst PORT = 3006;\r\napp.use(express.urlencoded({ extended: true }));\r\napp.use(express.json());\r\n\r\napp.get(\"/\", (req, res) => {\r\n    res.send(\"Sample Node Application\");\r\n  });\r\n\r\n\r\n\r\n\r\n\r\napp.listen(PORT, () => {\r\n    console.log(`Server is running on port ${PORT}`);\r\n  });\n\n//# sourceURL=webpack://sbnew/./app.js?");
+eval("const express = __webpack_require__(/*! express */ \"express\");\r\nconst config = __webpack_require__(/*! ./config */ \"./config.js\");\r\n\r\nconst app = express();\r\nconst PORT = config.SERVER_PORT;\r\napp.use(express.urlencoded({ extended: true }));\r\napp.use(express.json());\r\n\r\napp.get(\"/\", (req, res) => {\r\n    res.send(\"Sample Node Application\");\r\n  });\r\n\r\n\r\n\r\n\r\n\r\napp.listen(PORT, () => {\r\n    console.log(`Server is running on port ${PORT}`);\r\n  });\n\n//# sourceURL=webpack://sbnew/./app.js?");
+
+/***/ }),
+
+/***/ "./config.js":
+/*!*******************!*\
+  !*** ./config.js ***!
+  \*******************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("(__webpack_require__(/*! dotenv */ \"dotenv\").config)();\r\n\r\nmodule.exports = {\r\n  SERVER_PORT: process.env.SERVER_PORT,\r\n};\n\n//# sourceURL=webpack://sbnew/./config.js?");
+
+/***/ }),
+
+/***/ "dotenv":
+/*!*************************!*\
+  !*** external "dotenv" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("dotenv");
 
 /***/ }),
 

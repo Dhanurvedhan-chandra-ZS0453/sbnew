@@ -1,7 +1,8 @@
 const express = require("express");
+const config = require("./config");
 
 const app = express();
-const PORT = 3006;
+const PORT = config.SERVER_PORT;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
